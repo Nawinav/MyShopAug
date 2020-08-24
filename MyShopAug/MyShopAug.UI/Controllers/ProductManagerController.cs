@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MyShopAug.Core.Models;
+using MyShopAug.Core.ViewModels;
 using MyShopAug.DataAccess.InMemory;
 
 
@@ -13,9 +14,11 @@ namespace MyShopAug.UI.Controllers
     {
         // GET: ProductManager
         ProductRepository context;
+        ProductCategoryRepository productCategories;
         public ProductManagerController()
         {
             context = new ProductRepository();
+            productCategories = new ProductCategoryRepository();
         }
         public ActionResult Index()
         {
@@ -24,8 +27,11 @@ namespace MyShopAug.UI.Controllers
         }
         public ActionResult Create()
         {
-            Product product = new Product();
-            return View(product);
+            ProductManagerViewModel viewModel = new ProductManagerViewModel();
+            viewModel.Product = new Product();
+            viewModel.ProductCategories = productCategories.Collection();
+         
+            return View(viewModel);
         }
         [HttpPost]
         public ActionResult Create(Product product)
@@ -50,6 +56,9 @@ namespace MyShopAug.UI.Controllers
             }
             else
             {
+                ProductManagerViewModel viewModel = new ProductManagerViewModel();
+                viewModel.Product = product;
+                viewModel.ProductCategories = productCategories.Collection();
                 return View(product);
             }
         }
