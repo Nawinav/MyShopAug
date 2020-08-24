@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyShopAug.DataAccess.InMemory
 {
-    class ProductRepository
+    public class ProductRepository
     {
         ObjectCache cache = MemoryCache.Default;
         List<Product> products = new List<Product>();
@@ -75,4 +75,4 @@ namespace MyShopAug.DataAccess.InMemory
         }
     }
 }
-}
+

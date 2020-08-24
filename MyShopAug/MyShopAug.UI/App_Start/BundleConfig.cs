@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace MyShopAug.UI
+namespace MyShop.UI
 {
     public class BundleConfig
     {
@@ -23,7 +23,7 @@ namespace MyShopAug.UI
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/lumen.css",
                       "~/Content/site.css"));
         }
     }
