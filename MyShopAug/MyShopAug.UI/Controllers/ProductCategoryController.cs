@@ -11,10 +11,10 @@ namespace MyShopAug.UI.Controllers
     public class ProductCategoryController : Controller
     {
         // GET: ProductCategory
-        ProductCategoryRepository context;
+        InMemoryRepoistory<ProductCategory> context;
         public ProductCategoryController()
         {
-            context = new ProductCategoryRepository();
+            context = new InMemoryRepoistory<ProductCategory>();
         }
         public ActionResult Index()
         {

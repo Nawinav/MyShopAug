@@ -13,12 +13,12 @@ namespace MyShopAug.UI.Controllers
     public class ProductManagerController : Controller
     {
         // GET: ProductManager
-        ProductRepository context;
-        ProductCategoryRepository productCategories;
+        InMemoryRepoistory<Product> context;
+        InMemoryRepoistory<ProductCategory> productCategories;
         public ProductManagerController()
         {
-            context = new ProductRepository();
-            productCategories = new ProductCategoryRepository();
+            context = new InMemoryRepoistory<Product>();
+            productCategories = new InMemoryRepoistory<ProductCategory>();
         }
         public ActionResult Index()
         {
@@ -50,6 +50,8 @@ namespace MyShopAug.UI.Controllers
         public ActionResult Edit(string Id)
         {
             Product product = context.Find(Id);
+            ProductCategory category = new ProductCategory();
+        
             if (product == null)
             {
                 return HttpNotFound();
@@ -59,7 +61,7 @@ namespace MyShopAug.UI.Controllers
                 ProductManagerViewModel viewModel = new ProductManagerViewModel();
                 viewModel.Product = product;
                 viewModel.ProductCategories = productCategories.Collection();
-                return View(product);
+                return View(viewModel);
             }
         }
         [HttpPost]
