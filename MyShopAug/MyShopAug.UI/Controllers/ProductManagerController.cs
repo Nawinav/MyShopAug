@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MyShopAug.Core;
+using MyShopAug.Core.Contracts;
 using MyShopAug.Core.Models;
 using MyShopAug.Core.ViewModels;
 using MyShopAug.DataAccess.InMemory;
@@ -13,12 +15,12 @@ namespace MyShopAug.UI.Controllers
     public class ProductManagerController : Controller
     {
         // GET: ProductManager
-        InMemoryRepoistory<Product> context;
-        InMemoryRepoistory<ProductCategory> productCategories;
-        public ProductManagerController()
+        IRepoistory<Product> context;
+        IRepoistory<ProductCategory> productCategories;
+        public ProductManagerController(IRepoistory<Product> context, IRepoistory<ProductCategory> productCategories)
         {
-            context = new InMemoryRepoistory<Product>();
-            productCategories = new InMemoryRepoistory<ProductCategory>();
+            this.context = context;
+            this.productCategories = productCategories;
         }
         public ActionResult Index()
         {

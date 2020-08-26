@@ -1,4 +1,6 @@
-﻿using MyShopAug.Core.Models;
+﻿using MyShopAug.Core;
+using MyShopAug.Core.Contracts;
+using MyShopAug.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MyShopAug.DataAccess.InMemory
 {
-    public class InMemoryRepoistory<T> where T: BaseEntity
+    public class InMemoryRepoistory<T> : IRepoistory<T> where T : BaseEntity
     {
         ObjectCache cache = MemoryCache.Default;
         List<T> items;
@@ -33,7 +35,7 @@ namespace MyShopAug.DataAccess.InMemory
         }
         public void Update(T t)
         {
-            T tToUpdate = items.Find(x=>x.Id==t.Id);
+            T tToUpdate = items.Find(x => x.Id == t.Id);
 
             if (tToUpdate != null)
             {

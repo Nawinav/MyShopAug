@@ -1,4 +1,6 @@
-﻿using MyShopAug.Core.Models;
+﻿using MyShopAug.Core;
+using MyShopAug.Core.Contracts;
+using MyShopAug.Core.Models;
 using MyShopAug.DataAccess.InMemory;
 using System;
 using System.Collections.Generic;
@@ -11,10 +13,10 @@ namespace MyShopAug.UI.Controllers
     public class ProductCategoryController : Controller
     {
         // GET: ProductCategory
-        InMemoryRepoistory<ProductCategory> context;
-        public ProductCategoryController()
+        IRepoistory<ProductCategory> context;
+        public ProductCategoryController(IRepoistory<ProductCategory> context)
         {
-            context = new InMemoryRepoistory<ProductCategory>();
+            this.context = context;
         }
         public ActionResult Index()
         {
